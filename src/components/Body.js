@@ -3,10 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const filterData = (searchText, restaurants) =>
-  restaurants.filter((restaurant) =>
-    restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
-  );
+import { filterData } from "../hooks/helper.js";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -47,8 +44,9 @@ const Body = () => {
         <button
           className="search-btn"
           onClick={() => {
-            setFilteredRestaurants(filterData(searchText, allRestaurants));
-            console.log(filteredRestaurants);
+            console.log('allrests',allRestaurants);
+            const data = filterData(searchText, allRestaurants);
+            setFilteredRestaurants(data);
           }}
         >
           Search
