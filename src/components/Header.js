@@ -1,5 +1,6 @@
 import logo from "../img/hamburger.png";
 import { Link } from "react-router-dom";
+import useOnline from "../hooks/useOnline"
 
 const Title = () => {
   return (
@@ -12,6 +13,8 @@ const Title = () => {
 };
 
 const Header = () => {
+
+  const isOnline = useOnline();
   return (
     <div className="header">
       <Title />
@@ -22,7 +25,7 @@ const Header = () => {
           <Link to="/about"><li>About</li></Link>
           <Link to="/contact"><li>Contact</li></Link>
           <Link to="/instamart"><li>Instamart</li></Link>
-          <li>Cart</li>
+          <li>User<span>{(isOnline? "🟢":"🔴")}</span></li>
         </ul>
       </div>
     </div>

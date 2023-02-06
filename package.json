@@ -2,7 +2,6 @@
   "name": "namastereact",
   "version": "1.0.0",
   "description": "namaste react course project",
-  
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
@@ -11,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "tailwindcss": "^3.2.4"
   },
   "dependencies": {
     "parcel": "^2.8.3",
