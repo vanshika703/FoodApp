@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { filterData } from "../hooks/helper";
-import useOnline from '../hooks/useonline';
+import useOnline from "../hooks/useonline";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -26,8 +26,8 @@ const Body = () => {
   }
 
   const isOnline = useOnline();
-  if(!isOnline) {
-    return<h1>Offline pls check your internet</h1>
+  if (!isOnline) {
+    return <h1>Offline pls check your internet</h1>;
   }
 
   if (!allRestaurants) return null;
@@ -36,18 +36,18 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className=" text-sm text-center m-2 text-stone-50">
         <input
           type="text"
-          className="search-text"
-          placeholder="Search here"
+          className="border rounded-l w-96 p-2"
+          placeholder="Search for you favorite restaurant here..."
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <button
-          className="search-btn"
+          className="p-2 bg-orange-500 rounded-r"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurants(data);
@@ -56,12 +56,12 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex justify-center flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           console.log("Restaurant id :", restaurant.data.id);
           return (
             <Link to={"/restaurant/" + restaurant.data.id} key="restaurant.data.id">
-              <RestaurantCard {...restaurant?.data} key={restaurant?.data.id} />;
+              <RestaurantCard {...restaurant?.data} key={restaurant?.data.id} />
             </Link>
           );
         })}
