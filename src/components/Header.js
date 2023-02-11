@@ -1,7 +1,7 @@
 import logo from "../img/hamburger.png";
 import img from "../img/selection-of-chinese-food-that-may-cause-chinese-restaurant-syndrome.jpg";
 import { Link } from "react-router-dom";
-import useOnline from "../hooks/useOnline";
+import useOnline from "../hooks/useonline";
 
 const Title = () => {
   return (
