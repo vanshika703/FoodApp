@@ -36,25 +36,32 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className=" text-sm text-center m-2 text-stone-50">
-        <input
-          type="text"
-          className="border rounded-l w-96 p-2"
-          placeholder="Search for you favorite restaurant here..."
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          className="p-2 bg-orange-500 rounded-r"
-          onClick={() => {
-            const data = filterData(searchText, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        >
-          Search
-        </button>
+      <div className=" text-sm text-center m-7">
+        <div className="p-2">
+          <h1 className="text-5xl p-2 font-bold italic">Grub Hub</h1>
+          <h4 className="text-2xl p-2 font-medium mb-4">
+            Fresh and tasty food, delivered to satisfy all your hunger pangs.
+          </h4>
+
+          <input
+            type="text"
+            className="border rounded-l w-2/5 p-4 text-base font-medium"
+            placeholder="Search for you favorite restaurant or dishes here..."
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="p-4 bg-orange-500 rounded-r text-base text-stone-50 font-medium"
+            onClick={() => {
+              const data = filterData(searchText, allRestaurants);
+              setFilteredRestaurants(data);
+            }}
+          >
+            Search
+          </button>
+        </div>
       </div>
       <div className="flex justify-center flex-wrap">
         {filteredRestaurants.map((restaurant) => {
