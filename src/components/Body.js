@@ -1,15 +1,17 @@
 import Shimmer from "./Shimmer";
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { filterData } from "../hooks/helper";
 import useOnline from "../hooks/useonline";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -36,7 +38,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className=" text-sm text-center m-7">
+      <div className="text-sm text-center m-7">
         <div className="p-2">
           <h1 className="text-5xl p-2 font-bold italic">Grub Hub</h1>
           <h4 className="text-2xl p-2 font-medium mb-4">
@@ -61,13 +63,22 @@ const Body = () => {
           >
             Search
           </button>
+          {/* <input
+            value={user.name}
+            onChange={(e) => {
+              setUser({
+                ...user,
+                name: e.target.value,
+              });
+            }}
+          /> */}
         </div>
       </div>
       <div className="flex justify-center flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           console.log("Restaurant id :", restaurant.data.id);
           return (
-            <Link to={"/restaurant/" + restaurant.data.id} key="restaurant.data.id">
+            <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}>
               <RestaurantCard {...restaurant?.data} key={restaurant?.data.id} />
             </Link>
           );

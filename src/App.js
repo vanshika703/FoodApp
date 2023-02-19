@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,17 +8,36 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Profile from "./components/Profile";
-import Shimmer from './components/Shimmer';
+import Shimmer from "./components/Shimmer";
+/* import UserContext from "./utils/UserContext"; */
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 
-const About = lazy(() => import('./components/About'));
-const Instamart = lazy(()=> import('./components/Instamart'));
+const About = lazy(() => import("./components/About"));
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
+  /*  const [user, setUser] = useState({
+    name: "Vanshika",
+    email: "vanshika@gmail.com",
+  }); */
+
+  console.log("store", store);
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <Provider store={store}>
+        {/*  <UserContext.Provider
+          value={{
+            user: user,
+            setUser: setUser,
+          }}
+        > */}
+        <Header />
+        <Outlet />
+        <Footer />
+        {/* </UserContext.Provider> */}
+      </Provider>
     </>
   );
 };
@@ -36,16 +55,16 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-        <Suspense fallback={<h1>Loading....</h1>}>
-          <About />
-        </Suspense>
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <About />
+          </Suspense>
         ),
         children: [
           {
             path: "profile",
             element: <Profile />,
           },
-        ]
+        ],
       },
       {
         path: "/contact",
@@ -58,10 +77,15 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: (
-        <Suspense fallback={<Shimmer/>}>
-          <Instamart/>
-        </Suspense>)
-      }
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
   },
 ]);
