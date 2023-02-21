@@ -66,22 +66,22 @@ const appRouter = createBrowserRouter([
           },
         ],
       },
-      {
+      /* {
         path: "/contact",
         element: <Contact />,
-      },
+      }, */
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
       },
-      {
+      /* {
         path: "/instamart",
         element: (
           <Suspense fallback={<Shimmer />}>
             <Instamart />
           </Suspense>
         ),
-      },
+      }, */
       {
         path: "/cart",
         element: <Cart />,

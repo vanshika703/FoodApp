@@ -37,12 +37,12 @@ const Header = () => {
             <Link to="/about">
               <li className="m-5 hover:text-orange-500 ease-in duration-200">About</li>
             </Link>
-            <Link to="/contact">
+            {/* <Link to="/contact">
               <li className="m-5 hover:text-orange-500 ease-in duration-200">Contact</li>
             </Link>
             <Link to="/instamart">
               <li className="m-5 hover:text-orange-500 ease-in duration-200">Instamart</li>
-            </Link>
+            </Link> */}
             <Link to="/cart">
               <li className="m-5 hover:text-orange-500 ease-in duration-200">
                 Cart - {cartItems?.length} items
