@@ -11,6 +11,7 @@ const RestaurantMenu = () => {
   const { id } = useParams();
 
   const restaurant = useRestaurant(id);
+  console.log("Restaurant", restaurant);
 
   const dispatch = useDispatch();
 
@@ -21,26 +22,41 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <div className="flex">
-      <div>
-        <h1>Restaurant id : {id}</h1>
-        <h2>{restaurant?.name}</h2>
+    <div className="flex justify-center">
+      <div className="flex m-3 p-3 flex-col w-1/5">
+        {/* <h1>Restaurant id : {id}</h1> */}
+
         <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId} />
-        <h3>{restaurant?.area}</h3>
-        <h3>{restaurant?.city}</h3>
-        <h3>{restaurant?.avgRating} stars</h3>
-        <h3>{restaurant?.costForTwoMsg}</h3>
+        <h2 className="text-xl font-medium">{restaurant?.name}</h2>
+        <h3 className="text-base text-stone-500">{restaurant?.cuisines.join(" , ")}</h3>
+        <h3 className="text-base text-stone-500">
+          {restaurant?.area} , {restaurant?.city}
+        </h3>
+        <div className="flex text-base justify-between mt-2 text-stone-500">
+          <h3 className="bg-green-500 p-1 text-stone-50">&#9733; {restaurant?.avgRating}</h3>
+          <h3 className="p-1">{restaurant?.costForTwoMsg}</h3>
+          <h3 className="p-1">{restaurant?.sla?.deliveryTime} minutes</h3>
+        </div>
       </div>
-      <div>
-        <h1>Menu</h1>
+      <div className="flex flex-col m-3 p-3 w-2/5">
         <ul>
           {Object.values(restaurant?.menu?.items).map((item) => (
-            <li key={item.id}>
-              {item.name}
-              <button className="p-1 bg-orange-400" onClick={() => handleAddItem(item)}>
-                Add
-              </button>
-            </li>
+            <div key={item?.id} className="m-2 p-2 flex justify-around border-b">
+              <div>
+                <p className="text-base font-medium">{item?.name}</p>
+                <p className="text-xs text-stone-500">{item?.price / 100}</p>
+                <p className="text-xs text-stone-500">{item?.description}</p>
+              </div>
+              <div>
+                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-56" />
+                <button
+                  className="bg-green-500 p-1 text-stone-50"
+                  onClick={() => handleAddItem(item)}
+                >
+                  ADD
+                </button>
+              </div>
+            </div>
           ))}
         </ul>
       </div>

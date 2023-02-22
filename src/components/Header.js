@@ -1,4 +1,5 @@
 import logo from "../img/hamburger.png";
+import userImg from "../img/user.png";
 import { Link } from "react-router-dom";
 import useOnline from "../hooks/useonline";
 /* import { useContext } from "react";
@@ -49,7 +50,9 @@ const Header = () => {
               </li>
             </Link>
             <li className="m-5 hover:text-orange-500 ease-in duration-200">
-              User<span>{isOnline ? "🟢" : "🔴"}</span>
+              <p>
+                <span>🧑‍🦰{isOnline ? "🟢" : "🔴"}</span>
+              </p>
             </li>
           </ul>
         </div>
