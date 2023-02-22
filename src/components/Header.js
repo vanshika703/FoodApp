@@ -27,7 +27,7 @@ const Header = () => {
   console.log("cart", cartItems);
   return (
     <>
-      <div className="flex justify-around w-full text-base shadow-md p-1 font-medium sticky top-0 bg-slate-50">
+      <div className="flex justify-around w-full text-base shadow-md p-1 font-medium sticky top-0 bg-slate-50 z-10">
         <Title />
 
         <div className="">

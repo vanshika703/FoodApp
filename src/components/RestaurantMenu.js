@@ -41,20 +41,17 @@ const RestaurantMenu = () => {
       <div className="flex flex-col m-3 p-3 w-2/5">
         <ul>
           {Object.values(restaurant?.menu?.items).map((item) => (
-            <div key={item?.id} className="m-2 p-2 flex justify-around border-b">
+            <div key={item?.id} className="m-2 p-2 flex justify-between border-b">
               <div>
                 <p className="text-base font-medium">{item?.name}</p>
                 <p className="text-xs text-stone-500">{item?.price / 100}</p>
                 <p className="text-xs text-stone-500">{item?.description}</p>
+                <button className="p-1 text-green-500 text-sm font-medium" onClick={() => handleAddItem(item)}>
+                  + ADD
+                </button>
               </div>
               <div>
-                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-56" />
-                <button
-                  className="bg-green-500 p-1 text-stone-50"
-                  onClick={() => handleAddItem(item)}
-                >
-                  ADD
-                </button>
+                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-40  max-w-xs" />
               </div>
             </div>
           ))}
