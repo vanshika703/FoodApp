@@ -1,8 +1,13 @@
+import { ShimmerPostList, ShimmerSectionHeader } from "react-shimmer-effects";
+
 const Shimmer = () => {
   return (
-    <div>
-      <h1>Shimmer loading....</h1>
-    </div>
+    <>
+      <div className="flex flex-col m-10 p-10">
+        <ShimmerSectionHeader center />
+        <ShimmerPostList postStyle="STYLE_FOUR" col={4} row={2} gap={30} />;
+      </div>
+    </>
   );
 };
 

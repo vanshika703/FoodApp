@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../utils/constants";
-import Shimmer from "./Shimmer";
+import MenuShimmer from "./MenuShimmer";
 import { addItem } from "../utils/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import useRestaurant from "../hooks/useRestaurant";
 
@@ -15,12 +15,17 @@ const RestaurantMenu = () => {
 
   const dispatch = useDispatch();
 
+  // const { items: cartItems } = useSelector((store) => {
+  //   return store.cart;
+  // });
+
+  console.log("cartItems ", cartItems);
   function handleAddItem(item) {
     dispatch(addItem(item));
     console.log(item);
   }
   return !restaurant ? (
-    <Shimmer />
+    <MenuShimmer />
   ) : (
     <div className="flex justify-center">
       <div className="flex m-3 p-3 flex-col w-1/5">
@@ -46,12 +51,15 @@ const RestaurantMenu = () => {
                 <p className="text-base font-medium">{item?.name}</p>
                 <p className="text-xs text-stone-500">{item?.price / 100}</p>
                 <p className="text-xs text-stone-500">{item?.description}</p>
-                <button className="p-1 text-green-500 text-sm font-medium" onClick={() => handleAddItem(item)}>
+                <button
+                  className="p-1 text-green-500 text-sm font-medium"
+                  onClick={() => handleAddItem(item)}
+                >
                   + ADD
                 </button>
               </div>
               <div>
-                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-40  max-w-xs" />
+                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-52  max-w-xl" />
               </div>
             </div>
           ))}

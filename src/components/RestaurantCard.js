@@ -12,8 +12,8 @@ const RestaurantCard = ({
 }) => {
   /* const { user } = useContext(UserContext); */
   return (
-    <div className=" w-80 m-8 p-4 hover:shadow-md ease-in duration-200">
-      <img className="restaurant-img" src={IMG_CDN_URL + cloudinaryImageId} />
+    <div className=" w-72 m-8 p-4 hover:shadow-md ease-in duration-200">
+      <img className="restaurant-img w-72" src={IMG_CDN_URL + cloudinaryImageId} />
       <h4 className="text-base font-medium">{name}</h4>
       <p className="text-xs text-stone-500">{cuisines.join(" , ")}</p>
       <div className="flex text-xs justify-between mt-2 text-stone-500">

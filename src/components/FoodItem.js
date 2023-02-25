@@ -10,7 +10,7 @@ const FoodItem = ({ id, name, description, cloudinaryImageId, price }) => {
   }
   return (
     <div className="flex border-b-2 justify-between items-center m-1 p-1 w-3/5">
-      <img src={IMG_CDN_URL + cloudinaryImageId} className="w-40" />
+      <img src={IMG_CDN_URL + cloudinaryImageId} className="w-20" />
       <p className="text-base text-stone-500">{name}</p>
       {/* <p>{description}</p> */}
       <p className="text-base text-stone-500">Rs. {price / 100}</p>
