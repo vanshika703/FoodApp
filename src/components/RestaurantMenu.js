@@ -14,12 +14,6 @@ const RestaurantMenu = () => {
   console.log("Restaurant", restaurant);
 
   const dispatch = useDispatch();
-
-  // const { items: cartItems } = useSelector((store) => {
-  //   return store.cart;
-  // });
-
-  console.log("cartItems ", cartItems);
   function handleAddItem(item) {
     dispatch(addItem(item));
     console.log(item);
