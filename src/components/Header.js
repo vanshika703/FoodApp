@@ -24,6 +24,10 @@ const Header = () => {
     return store.cart.items;
   });
 
+  const calculateQty = () => {
+    return cartItems?.map((items) => items.quantity).reduce((a, b) => a + b, 0);
+  };
+
   console.log("cart", cartItems);
   return (
     <>
@@ -46,7 +50,7 @@ const Header = () => {
             </Link> */}
             <Link to="/cart">
               <li className="m-5 hover:text-orange-500 ease-in duration-200">
-                Cart - {cartItems?.length} items
+                Cart - {calculateQty()} items
               </li>
             </Link>
             <li className="m-5 hover:text-orange-500 ease-in duration-200">
@@ -58,6 +62,7 @@ const Header = () => {
         </div>
         {/*  <p>{user.name} - {user.email}</p> */}
       </div>
+      <div className="text-center">{isOnline ? "" : "🔴 Connection Error"}</div>
     </>
   );
 };

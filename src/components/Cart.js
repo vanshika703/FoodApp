@@ -14,6 +14,18 @@ const Cart = () => {
   }
   console.log(cartItems);
 
+  const calculateQty = () => {
+    return cartItems?.map((items) => items.quantity).reduce((a, b) => a + b, 0);
+  };
+
+  const calculateTotalPrice = () => {
+    return cartItems
+      ?.map((items) => {
+        return { price: items.price, quantity: items.quantity };
+      })
+      .reduce((oldVal, newVal) => oldVal + newVal.price * newVal.quantity, 0);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center m-5">
       {cartItems.map((item) => (
@@ -22,8 +34,8 @@ const Cart = () => {
 
       <div className="flex justify-between items-center w-3/5 m-2 p-2 ">
         <h1 className="text-base font-medium">Cart Totals : </h1>
-        <h1 className="text-base font-medium">Quantity : {cartItems.length}</h1>
-        <p className="text-base font-medium">Price : Rs. {total / 100}</p>
+        <h1 className="text-base font-medium">Quantity : {calculateQty}</h1>
+        <p className="text-base font-medium">Price : Rs. {calculateTotalPrice() / 100}</p>
         <button className="p-1 text-red-500 text-sm font-medium" onClick={() => handleClearCart()}>
           CLEAR CART
         </button>
