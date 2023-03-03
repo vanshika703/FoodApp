@@ -1,6 +1,6 @@
 # Grub Hub FoodApp
 
-You can view the live website here : https://grubhub-react-food-app.netlify.app/cart
+You can view the live website here : https://grubhub-react-food-app.netlify.app/
 
 ### Grub Hub is a food delivery app which fetches data using Swiggy's API.
 
