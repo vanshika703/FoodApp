@@ -9,7 +9,7 @@ const FoodItem = ({ id, name, description, cloudinaryImageId, price, quantity })
     dispatch(removeItem(obj));
   }
   return (
-    <div className="flex border-b-2 justify-between items-center m-1 p-1 w-3/5">
+    <div className="flex border-b-2 justify-between items-center m-1 p-1 w-full sm:w-3/5">
       <img src={IMG_CDN_URL + cloudinaryImageId} className="w-20" />
       <p className="text-base text-stone-500">{name}</p>
       <p className="text-base text-stone-500">{quantity}</p>

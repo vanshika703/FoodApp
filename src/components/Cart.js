@@ -32,10 +32,11 @@ const Cart = () => {
         <FoodItem key={item?.id} {...item} />
       ))}
 
-      <div className="flex justify-between items-center w-3/5 m-2 p-2 ">
+      <div className="flex flex-col justify-between items-center w-full sm:w-3/5 m-2 p-2 ">
+        <div className="w-20"></div>
         <h1 className="text-base font-medium">Cart Totals : </h1>
-        <h1 className="text-base font-medium">Quantity : {calculateQty}</h1>
-        <p className="text-base font-medium">Price : Rs. {calculateTotalPrice() / 100}</p>
+        <h1 className="text-base ">Quantity : {calculateQty}</h1>
+        <p className="text-base ">Price : Rs. {calculateTotalPrice() / 100}</p>
         <button className="p-1 text-red-500 text-sm font-medium" onClick={() => handleClearCart()}>
           CLEAR CART
         </button>

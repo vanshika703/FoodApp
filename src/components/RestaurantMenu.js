@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useRestaurant from "../hooks/useRestaurant";
 
 const RestaurantMenu = () => {
+  /* const [quantity, setQuantity] = useState(0); */
   const { id } = useParams();
 
   const restaurant = useRestaurant(id);
@@ -21,8 +22,8 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <MenuShimmer />
   ) : (
-    <div className="flex justify-center">
-      <div className="flex m-3 p-3 flex-col w-1/5">
+    <div className="sm:flex block justify-center">
+      <div className="flex m-3 p-3 flex-col sm:w-1/5 w-4/5">
         {/* <h1>Restaurant id : {id}</h1> */}
 
         <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId} />
@@ -37,23 +38,30 @@ const RestaurantMenu = () => {
           <h3 className="p-1">{restaurant?.sla?.deliveryTime} minutes</h3>
         </div>
       </div>
-      <div className="flex flex-col m-3 p-3 w-2/5">
+      <div className="flex flex-col m-3 p-3 sm:w-2/5 w-4/5">
         <ul>
           {Object.values(restaurant?.menu?.items).map((item) => (
             <div key={item?.id} className="m-2 p-2 flex justify-between border-b">
-              <div>
+              <div className="w-4/5">
                 <p className="text-base font-medium">{item?.name}</p>
                 <p className="text-xs text-stone-500">{item?.price / 100}</p>
-                <p className="text-xs text-stone-500">{item?.description}</p>
+                <p className="hidden sm:block text-xs text-stone-500 max-w-[300px]">
+                  {item?.description}
+                </p>
+                {/* {item?.quantity ? setQuantity(item?.quantity) : setQuantity(0)} */}
                 <button
                   className="p-1 text-green-500 text-sm font-medium"
                   onClick={() => handleAddItem(item)}
                 >
-                  + ADD
+                  ADD
+                  {/* {quantity != 0 ? "-" + quantity + "+" : "ADD"} */}
                 </button>
               </div>
-              <div>
-                <img src={IMG_CDN_URL + item?.cloudinaryImageId} className="w-52  max-w-xl" />
+              <div className="w-2/5 sm:w-auto">
+                <img
+                  src={IMG_CDN_URL + item?.cloudinaryImageId}
+                  className="w- sm:w-52 sm:max-w-xl"
+                />
               </div>
             </div>
           ))}
