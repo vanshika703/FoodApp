@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../utils/constants";
 import MenuShimmer from "./MenuShimmer";
 import { addItem } from "../utils/cartSlice";
+import errorImg from "../img/error.png";
 import { useDispatch, useSelector } from "react-redux";
 
 import useRestaurant from "../hooks/useRestaurant";
@@ -22,7 +23,7 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <MenuShimmer />
   ) : (
-    <div className="sm:flex block justify-center">
+    <div className="flex flex-col items-center sm:items-start sm:flex-row justify-center">
       <div className="flex m-3 p-3 flex-col sm:w-1/5 w-4/5">
         {/* <h1>Restaurant id : {id}</h1> */}
 
@@ -44,7 +45,7 @@ const RestaurantMenu = () => {
             <div key={item?.id} className="m-2 p-2 flex justify-between border-b">
               <div className="w-4/5">
                 <p className="text-base font-medium">{item?.name}</p>
-                <p className="text-xs text-stone-500">{item?.price / 100}</p>
+                <p className="text-xs text-stone-500">Rs.{item?.price / 100}</p>
                 <p className="hidden sm:block text-xs text-stone-500 max-w-[300px]">
                   {item?.description}
                 </p>
@@ -60,7 +61,8 @@ const RestaurantMenu = () => {
               <div className="w-2/5 sm:w-auto">
                 <img
                   src={IMG_CDN_URL + item?.cloudinaryImageId}
-                  className="w- sm:w-52 sm:max-w-xl"
+                  onerror={errorImg}
+                  className=" sm:w-52 sm:max-w-xl"
                 />
               </div>
             </div>
